@@ -1,5 +1,7 @@
 import { combineReducers} from 'redux';
-
-const reducers = {};
+import { calendarReducer } from "./calendarReducer";
+const reducers = {
+    calendar:calendarReducer
+};
 
 export default combineReducers(reducers);

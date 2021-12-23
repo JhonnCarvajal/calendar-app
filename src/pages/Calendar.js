@@ -6,6 +6,7 @@ function Calendar(props) {
   return (
     <div className="container">
         <h1>Calendar</h1>
+        Creating calendar...
     </div>
   )
 }
