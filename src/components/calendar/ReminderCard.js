@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { deleteReminder, editReminder } from "../../actions/calendar";
+import { getWeatherByCity } from "../../helpers/getWeatherByCity";
+import { useFetchWeather } from "../../hooks/useFetchWeather";
 import { useForm } from "../../hooks/useForm";
+import { DayWeather } from "./DayWeather";
 
 export const ReminderCard = ({ reminderId, text, city, date }) => {
   const dispatch = useDispatch();
@@ -16,8 +19,9 @@ export const ReminderCard = ({ reminderId, text, city, date }) => {
   };
   const hanldeEditReminder = () => {
     dispatch(editReminder(reminderId, new_text, new_city, date));
-    setEdit(!edit)
+    setEdit(!edit);
   };
+
   return (
     <div key={reminderId} className="calendar__reminder">
       {edit ? (
@@ -53,6 +57,8 @@ export const ReminderCard = ({ reminderId, text, city, date }) => {
           <p>
             <b>City</b>: {city}
           </p>
+          <DayWeather city={city} />
+
           <span className="material-icons" onClick={() => setEdit(!edit)}>
             edit
           </span>
