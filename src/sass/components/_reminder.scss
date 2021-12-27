@@ -1,0 +1,22 @@
+.reminder__body{
+    background-color: rgb(214, 209, 209);
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+}
+.reminder__input {
+    width: 90%;
+    color: gray;
+    border: 0px;
+    margin: 10px;
+    border-bottom: 1px solid black;
+    font-size: 16px;
+    margin-bottom: 10px;
+    height: 20px;
+    transition: border-bottom 0.3s ease;
+    &:focus {
+      outline: none;
+      border-bottom: 1px solid $primary;
+    }
+  }
+  

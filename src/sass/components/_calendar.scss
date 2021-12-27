@@ -1,7 +1,14 @@
+//Calendar colors
+$primary: rgb(69, 137, 214);
+
+
 ol {
   list-style: none;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
+}
+.calendar__body{
+  text-align: center;
 }
 .calendar__main-content {
   display: flex;
@@ -10,20 +17,21 @@ ol {
   width: 100%;
   padding: 10px;
   overflow-x: auto;
+  text-align: center;
 }
-.calendar__month_year{
-  border: 2px solid rgb(69, 137, 214);
+
+.calendar__month_year {
+  border: 2px solid $primary;
   text-align: center;
   margin: auto;
   font-size: 48px;
   font-weight: bold;
   width: 80%;
-  
 }
 .calendar__week-days {
   text-align: center;
   padding: 10px;
-  background-color: rgb(69, 137, 214);
+  background-color: $primary;
   border: 1px solid black;
   color: white;
   font-weight: bold;
@@ -39,11 +47,11 @@ ol {
   width: 13vw;
   overflow-y: auto;
 }
-.calendar__active-day{
+.calendar__active-day {
   font-size: 22px;
   font-weight: bold;
 }
-.calendar__inactive-day{
+.calendar__inactive-day {
   font-size: 22px;
   color: gray;
 }
@@ -55,7 +63,23 @@ ol {
     color: darken($color: white, $amount: 100);
   }
 }
-.calendar__reminder{
-  background-color: rgb(214, 209, 209);
-  padding: 5px;
+
+.calendar__form {
+  flex-direction: row;
+  align-content: center;
+}
+.calendar__input {
+  width: 250px;
+  color: gray;
+  border: 0px;
+  margin: 10px;
+  border-bottom: 1px solid black;
+  font-size: 16px;
+  margin-bottom: 10px;
+  height: 20px;
+  transition: border-bottom 0.3s ease;
+  &:focus {
+    outline: none;
+    border-bottom: 1px solid $primary;
+  }
 }

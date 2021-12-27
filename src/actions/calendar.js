@@ -1,7 +1,8 @@
-export const addReminder = (reminderId, text, city, date) => ({
+export const addReminder = (reminderId,hour, text, city, date) => ({
   type: "ADD_REMINDER",
   payload: {
     reminderId: reminderId,
+    hour:hour,
     text: text,
     city: city,
     date: date
@@ -14,10 +15,11 @@ export const deleteReminder = (reminderId, date) => ({
     date: date
   }
 });
-export const editReminder = (reminderId, text, city, date) => ({
+export const editReminder = (reminderId,hour, text, city, date) => ({
   type: "EDIT_REMINDER",
   payload: {
     reminderId: reminderId,
+    hour:hour,
     text: text,
     city: city,
     date: date

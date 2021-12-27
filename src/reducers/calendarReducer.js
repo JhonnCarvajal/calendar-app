@@ -7,6 +7,7 @@ export const calendarReducer = (state = initialState, action) => {
         [action.payload.date]: [
           ...(state[action.payload.date] || []),
           {
+            hour:action.payload.hour,
             text: action.payload.text,
             city: action.payload.city,
             reminderId: action.payload.reminderId,

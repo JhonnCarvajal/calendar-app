@@ -9,20 +9,27 @@ import moment from "moment";
 const Calendar = () => {
   const dispatch = useDispatch();
   const [formValues, handleInputChange] = useForm({
+    hour: "",
     text: "",
     city: "",
     date: ""
   });
-  const { text, city, date } = formValues;
+  const { hour, text, city, date } = formValues;
   const hanldeSaveReminder = (e) => {
     e.preventDefault();
     const reminderId = moment().unix();
-    dispatch(addReminder(reminderId, text, city, date));
+    dispatch(addReminder(reminderId, hour, text, city, date));
   };
   return (
-    <div>
+    <div className="calendar__body">
       <h1>Calendar</h1>
-      <form onSubmit={hanldeSaveReminder}>
+      <form onSubmit={hanldeSaveReminder} className="calendar__form">
+        <input
+          name="hour"
+          type={"time"}
+          onChange={handleInputChange}
+          value={hour}
+        />
         <input
           name="text"
           type={"text"}
@@ -30,7 +37,7 @@ const Calendar = () => {
           placeholder="Reminder"
           value={text}
           maxLength={30}
-          style={{minWidth:'250px'}}
+          className="calendar__input"
         />
         <input
           name="city"
@@ -38,17 +45,21 @@ const Calendar = () => {
           onChange={handleInputChange}
           placeholder="City"
           value={city}
+          className="calendar__input"
         />
         <input
           name="date"
           type={"date"}
           onChange={handleInputChange}
           value={date}
+          className="calendar__input"
         />
-        <button type="submit">Add reminder</button>
+        <button type="submit" className="btn btn-primary">
+          Add reminder
+        </button>
       </form>
 
-      <div className="calendar__month_year">DEC - 2022</div>
+      <div className="calendar__month_year">DEC - 2021</div>
       <div className="calendar__main-content">
         <ol>
           {daysOrder.map((day) => (
