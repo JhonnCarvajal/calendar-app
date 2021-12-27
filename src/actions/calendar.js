@@ -1,5 +1,7 @@
+import { types } from "../types/types";
+
 export const addReminder = (reminderId,hour, text, city, date) => ({
-  type: "ADD_REMINDER",
+  type: types.calendarAddReminder,
   payload: {
     reminderId: reminderId,
     hour:hour,
@@ -9,14 +11,14 @@ export const addReminder = (reminderId,hour, text, city, date) => ({
   }
 });
 export const deleteReminder = (reminderId, date) => ({
-  type: "DELETE_REMINDER",
+  type: types.calendarDeleteReminder,
   payload: {
     reminderId: reminderId,
     date: date
   }
 });
 export const editReminder = (reminderId,hour, text, city, date) => ({
-  type: "EDIT_REMINDER",
+  type: types.calendarEditReminder,
   payload: {
     reminderId: reminderId,
     hour:hour,

@@ -39,11 +39,12 @@ ol {
   width: 13vw;
 }
 .calendar__day {
+  text-align: start;
   border: 1px solid black;
   display: flex;
   flex-direction: column;
   padding: 5px;
-  height: 200px;
+  height: 230px;
   width: 13vw;
   overflow-y: auto;
 }
@@ -70,6 +71,20 @@ ol {
 }
 .calendar__input {
   width: 250px;
+  color: gray;
+  border: 0px;
+  margin: 10px;
+  border-bottom: 1px solid black;
+  font-size: 16px;
+  margin-bottom: 10px;
+  height: 20px;
+  transition: border-bottom 0.3s ease;
+  &:focus {
+    outline: none;
+    border-bottom: 1px solid $primary;
+  }
+}
+.calendar__input-hour {
   color: gray;
   border: 0px;
   margin: 10px;

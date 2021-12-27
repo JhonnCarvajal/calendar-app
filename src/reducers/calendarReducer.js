@@ -1,7 +1,9 @@
+import { types } from "../types/types";
+
 const initialState = {};
 export const calendarReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "ADD_REMINDER":
+    case types.calendarAddReminder:
       return {
         ...state,
         [action.payload.date]: [
@@ -15,14 +17,14 @@ export const calendarReducer = (state = initialState, action) => {
           }
         ]
       };
-    case "DELETE_REMINDER":
+    case types.calendarDeleteReminder:
       return {
         ...state,
         [action.payload.date]: state[action.payload.date].filter(function (el) {
           return el.reminderId !== action.payload.reminderId;
         })
       };
-    case "EDIT_REMINDER":
+    case types.calendarEditReminder:
       return {
         ...state,
         [action.payload.date]: state[action.payload.date].map((el) =>
