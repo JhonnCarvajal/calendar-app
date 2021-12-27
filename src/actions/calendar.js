@@ -1,10 +1,10 @@
 import { types } from "../types/types";
 
-export const addReminder = (reminderId,hour, text, city, date) => ({
+export const addReminder = (reminderId, hour, text, city, date) => ({
   type: types.calendarAddReminder,
   payload: {
     reminderId: reminderId,
-    hour:hour,
+    hour: hour,
     text: text,
     city: city,
     date: date
@@ -17,13 +17,14 @@ export const deleteReminder = (reminderId, date) => ({
     date: date
   }
 });
-export const editReminder = (reminderId,hour, text, city, date) => ({
+export const editReminder = (reminderId, hour, text, city, date) => ({
   type: types.calendarEditReminder,
   payload: {
     reminderId: reminderId,
-    hour:hour,
+    hour: hour,
     text: text,
     city: city,
     date: date
   }
 });
+

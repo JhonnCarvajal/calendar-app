@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { deleteReminder, editReminder } from "../../actions/calendar";
+import { deleteReminder, addReminder, editReminder } from "../../actions/calendar";
 
 import { useForm } from "../../hooks/useForm";
 import { DayWeather } from "./DayWeather";
@@ -11,23 +11,43 @@ export const ReminderCard = ({ reminderId, hour, text, city, date }) => {
   const [formValues, handleInputChange] = useForm({
     new_hour: hour,
     new_text: text,
-    new_city: city
+    new_city: city,
+    new_date: date
   });
-  const { new_hour, new_text, new_city } = formValues;
-  const handleDeleteReminder = (reminderId) => {
+  const { new_hour, new_text, new_city, new_date } = formValues;
+  const handleDeleteReminder = () => {
     dispatch(deleteReminder(reminderId, date));
   };
   const hanldeEditReminder = (e) => {
     e.preventDefault();
-    dispatch(editReminder(reminderId, new_hour, new_text, new_city, date));
+    if (new_date !== date) {
+      dispatch(deleteReminder(reminderId, date))
+      dispatch(
+        addReminder(reminderId, new_hour, new_text, new_city, new_date)
+      );
+    } else {
+      dispatch(
+        editReminder(reminderId, new_hour, new_text, new_city, date)
+      );
+    }
     setEdit(!edit);
   };
 
   return (
     <div style={{ position: "relative" }}>
-      <div key={reminderId} className="reminder__body">
+      <div key={reminderId} className="reminder__body animate__animated animate__bounceIn">
         {edit ? (
           <form onSubmit={hanldeEditReminder}>
+            <b>Change Date:</b>
+            <br />
+            <input
+              name="new_date"
+              type={"date"}
+              value={new_date}
+              onChange={handleInputChange}
+              className="reminder__input"
+            />
+            <b>Change Hour:</b>
             <input
               name="new_hour"
               type={"time"}
@@ -35,6 +55,7 @@ export const ReminderCard = ({ reminderId, hour, text, city, date }) => {
               onChange={handleInputChange}
               className="reminder__input-hour"
             />
+
             <br />
             <b>Text:</b>
             <input
@@ -81,7 +102,7 @@ export const ReminderCard = ({ reminderId, hour, text, city, date }) => {
             </span>
             <span
               className="material-icons pointer icon"
-              onClick={() => handleDeleteReminder(reminderId)}
+              onClick={handleDeleteReminder}
             >
               delete
             </span>

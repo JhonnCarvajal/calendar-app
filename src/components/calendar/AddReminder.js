@@ -15,7 +15,7 @@ export const AddReminder = () => {
     const { hour, text, city, date } = formValues;
     const hanldeSaveReminder = (e) => {
       e.preventDefault();
-      const reminderId = moment().unix();
+      const reminderId = moment().format('x');
       dispatch(addReminder(reminderId, hour, text, city, date));
     };
     return (
