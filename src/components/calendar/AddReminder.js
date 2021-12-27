@@ -6,7 +6,7 @@ import { useForm } from '../../hooks/useForm';
 
 export const AddReminder = () => {
     const dispatch = useDispatch();
-    const [formValues, handleInputChange] = useForm({
+    const [formValues, handleInputChange,resetInputValues] = useForm({
       hour: "",
       text: "",
       city: "",
@@ -17,6 +17,7 @@ export const AddReminder = () => {
       e.preventDefault();
       const reminderId = moment().format('x');
       dispatch(addReminder(reminderId, hour, text, city, date));
+      resetInputValues();
     };
     return (
         <form onSubmit={hanldeSaveReminder} className="calendar__form">

@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { deleteReminder, addReminder, editReminder } from "../../actions/calendar";
 
 import { useForm } from "../../hooks/useForm";
@@ -7,6 +7,7 @@ import { DayWeather } from "./DayWeather";
 
 export const ReminderCard = ({ reminderId, hour, text, city, date }) => {
   const dispatch = useDispatch();
+  const state = useSelector(state => state.calendar)
   const [edit, setEdit] = useState(false);
   const [formValues, handleInputChange] = useForm({
     new_hour: hour,
@@ -14,6 +15,10 @@ export const ReminderCard = ({ reminderId, hour, text, city, date }) => {
     new_city: city,
     new_date: date
   });
+  useEffect(() => {
+    localStorage.setItem("calendar", JSON.stringify(state));
+  }, [state])
+  
   const { new_hour, new_text, new_city, new_date } = formValues;
   const handleDeleteReminder = () => {
     dispatch(deleteReminder(reminderId, date));

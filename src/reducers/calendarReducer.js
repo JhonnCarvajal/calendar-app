@@ -1,6 +1,6 @@
 import { types } from "../types/types";
 
-const initialState = {};
+const initialState = JSON.parse(localStorage.getItem("calendar")) || {};
 export const calendarReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.calendarAddReminder:
@@ -18,12 +18,14 @@ export const calendarReducer = (state = initialState, action) => {
         ]
       };
     case types.calendarDeleteReminder:
-      return {
+      const newState ={
         ...state,
         [action.payload.date]: state[action.payload.date].filter(function (el) {
           return el.reminderId !== action.payload.reminderId;
         })
       };
+      localStorage.setItem("calendar", JSON.stringify(newState));
+      return newState;
     case types.calendarEditReminder:
       return {
         ...state,
